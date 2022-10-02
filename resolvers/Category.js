@@ -1,8 +1,8 @@
 exports.Category = {
-    products: (parent, { filter }, context) => {
+    products: (parent, { filter }, { db }) => {
         const categoryId = parent.id;
 
-        const categoryProducts = context.products.filter(
+        const categoryProducts = db.products.filter(
             (product) => product.categoryId === categoryId
         );
         let filteredCategoryProducts = categoryProducts;

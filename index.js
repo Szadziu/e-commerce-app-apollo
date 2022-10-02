@@ -1,11 +1,10 @@
 const { ApolloServer, gql } = require('apollo-server');
 const { Query } = require('./resolvers/Query');
+const { Mutation } = require('./resolvers/Mutation');
 const { Category } = require('./resolvers/Category');
 const { Product } = require('./resolvers/Product');
 const { typeDefs } = require('./schema');
-const { categories, products, reviews } = require('./db');
-
-// String, Int, Float, Boolean
+const { db } = require('./db');
 
 const server = new ApolloServer({
     typeDefs,
@@ -13,11 +12,10 @@ const server = new ApolloServer({
         Query,
         Category,
         Product,
+        Mutation,
     },
     context: {
-        products,
-        categories,
-        reviews,
+        db,
     },
 });
 

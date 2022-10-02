@@ -1,13 +1,9 @@
 exports.Product = {
-    category: (parent, args, context) => {
+    category: (parent, args, { db }) => {
         const categoryId = parent.categoryId;
-        return context.categories.find(
-            (category) => category.id === categoryId
-        );
+        return db.categories.find((category) => category.id === categoryId);
     },
-    reviews: (parent, args, context) => {
-        return context.reviews.filter(
-            (review) => review.productId === parent.id
-        );
+    reviews: (parent, args, { db }) => {
+        return db.reviews.filter((review) => review.productId === parent.id);
     },
 };
